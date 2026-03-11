@@ -32,7 +32,8 @@ namespace API.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("Id");
 
@@ -91,8 +92,8 @@ namespace API.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("File")
                         .IsRequired()
@@ -103,7 +104,8 @@ namespace API.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -347,12 +349,12 @@ namespace API.Migrations
                     b.Property<int>("ListOfPhotosId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ListOfPhotosId1")
+                    b.Property<int>("ListOfPurchasesId")
                         .HasColumnType("int");
 
-                    b.HasKey("ListOfPhotosId", "ListOfPhotosId1");
+                    b.HasKey("ListOfPhotosId", "ListOfPurchasesId");
 
-                    b.HasIndex("ListOfPhotosId1");
+                    b.HasIndex("ListOfPurchasesId");
 
                     b.ToTable("PhotographyPurchase");
                 });
@@ -440,7 +442,7 @@ namespace API.Migrations
 
                     b.HasOne("API.Models.Purchase", null)
                         .WithMany()
-                        .HasForeignKey("ListOfPhotosId1")
+                        .HasForeignKey("ListOfPurchasesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

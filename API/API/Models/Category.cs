@@ -15,17 +15,19 @@ public class Category{
     /// <summary>
     /// Nome da categoria
     /// </summary>
-    
-    public string Name { get; set; }
+    [StringLength(20)]
+    [Display(Name ="Nome da Categoria")]
+    [Required(ErrorMessage = "{0} é de preenchimento obrigatório")]
+    public string Name { get; set; } = "";
     
     /*
      * Relacionamentos 1-N
      */
-    
+
     /// <summary>
     /// Lista de fotografias que uma categoria tem
     /// </summary>
-    public ICollection<Photography> ListOfPhotos { get; set; }
+    public ICollection<Photography> ListOfPhotos { get; set; } = [];
 }
 
 
